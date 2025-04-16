@@ -1,18 +1,10 @@
 ﻿
 namespace Simulator.Models;
 
-public sealed class TallyResult
+public sealed class TallyResult(string dieResults, uint diceTotal, int modifier, int rollTotal)
 {
-    private readonly string _dieResults;
-    private readonly uint _diceTotal;
-    private readonly int _modifier;
-    private readonly int _rollTotal;
-
-    internal TallyResult(string dieResults, uint diceTotal, int modifier, int rollTotal)
-    {
-        _dieResults = dieResults;
-        _diceTotal = diceTotal;
-        _modifier = modifier;
-        _rollTotal = rollTotal;
-    }
+    public string DieResults { get; } = dieResults;
+    public uint DiceTotal { get; } = diceTotal;
+    public int Modifier { get; } = modifier;
+    public int RollTotal { get; } = rollTotal;
 }

@@ -2,7 +2,7 @@
 namespace Simulator.Models;
 internal static class IntValidationExtensions
 {
-    private const uint MIN_COUNT = 0;
+    private const uint MIN_COUNT = 1;
     private const uint MAX_COUNT = 10;
     private const int MIN_MODIFIER = -100;
     private const int MAX_MODIFIER = 100;
@@ -13,7 +13,7 @@ internal static class IntValidationExtensions
         return validSides.Contains(sides);
     }
 
-    internal static bool IsValidCount(this uint count) => count is > MIN_COUNT and <= MAX_COUNT;
+    internal static bool IsValidCount(this uint count) => count is >= MIN_COUNT and <= MAX_COUNT;
 
     internal static bool IsValidModifier(this int modifier) => modifier is >= -MIN_MODIFIER and <= MAX_MODIFIER;
 }

@@ -8,12 +8,26 @@ public sealed class Dice
 
     public Dice(uint sides, uint count, int modifier)
     {
-        // TODO: validate
-        for (int i = 0; i < count - 1; i++)
+        if (!sides.IsValidSides())
         {
-            _diceResult = _diceResult.Append(new Die(sides).Roll());
+            // TODO...
         }
-        _modifier = modifier;
+        else if (!count.IsValidCount())
+        {
+            // TODO...
+        }
+        else if (!modifier.IsValidModifier())
+        {
+            // TODO...
+        }
+        else
+        {
+            for (int i = 0; i < count - 1; i++)
+            {
+                _diceResult = _diceResult.Append(new Die(sides).Roll());
+            }
+            _modifier = modifier;
+        }
     }
 
     public TallyResult TallyDice()

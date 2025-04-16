@@ -3,8 +3,9 @@ namespace Simulator.Models;
 
 public sealed class Dice
 {
-    private readonly IEnumerable<RollResult> _diceResult = [];
-    private readonly int _modifier;
+    private uint Sides { get; }
+    private uint Count { get; }
+    private int Modifier { get; }
 
     public Dice(uint sides, uint count, int modifier)
     {
@@ -22,19 +23,58 @@ public sealed class Dice
         }
         else
         {
-            for (int i = 0; i < count - 1; i++)
-            {
-                _diceResult = _diceResult.Append(new Die(sides).Roll());
-            }
-            _modifier = modifier;
+            Sides = sides;
+            Count = count;
+            Modifier = modifier;
         }
+    }
+
+    private static uint GetRandom(uint max)
+    {
+        Random rand = new();
+        return (uint)rand.Next(1, (int)(max + 1));
     }
 
     public TallyResult TallyDice()
     {
-        uint diceTotal = (uint)_diceResult.Sum(d => d.Result);
-        string dieResults = string.Join(" ", _diceResult.Select(d => d.Result.ToString()));
-        int rollTotal = (int)diceTotal + _modifier;
-        return new(dieResults, diceTotal, _modifier, rollTotal);
+        uint diceTotal = 0;
+        string dieResults = string.Empty;
+        int rollTotal = 0;
+
+        for (int i = 0; i < Count - 1; i++)
+        {
+            uint roll;
+
+            if (Sides == 2)
+            {
+                roll = (uint)(GetRandom(Sides * 2) % 2 == 0 ? 1 : 2);
+            }
+            else if (Sides == 3)
+            {
+                uint rand = GetRandom(Sides * 2);
+                decimal halfRandWithFraction = (decimal)rand / 2;
+                int halfRandWholeNumber = (int)rand / 2;
+                decimal fraction = halfRandWithFraction - halfRandWholeNumber;
+
+                if (fraction >= 0.5m)
+                {
+                    rand++;
+                }
+
+                roll = (uint)rand;
+            }
+            else
+            {
+                roll = (uint)GetRandom(Sides);
+            }
+
+            diceTotal += roll;
+            dieResults += $"{roll} ";
+            rollTotal += (int)roll;
+        }
+
+        rollTotal += Modifier;
+
+        return new(dieResults, diceTotal, Modifier, rollTotal);
     }
 }

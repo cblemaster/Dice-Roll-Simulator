@@ -29,12 +29,6 @@ public sealed class Dice
         }
     }
 
-    private static uint GetRandom(uint max)
-    {
-        Random rand = new();
-        return (uint)rand.Next(1, (int)(max + 1));
-    }
-
     public TallyResult TallyDice()
     {
         uint diceTotal = 0;
@@ -76,5 +70,11 @@ public sealed class Dice
         rollTotal += Modifier;
 
         return new(dieResults, diceTotal, Modifier, rollTotal);
+
+        static uint GetRandom(uint max)
+        {
+            Random rand = new();
+            return (uint)rand.Next(1, (int)(max + 1));
+        }
     }
 }

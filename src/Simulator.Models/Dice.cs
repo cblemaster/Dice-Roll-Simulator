@@ -45,17 +45,17 @@ public sealed class Dice
             }
             else if (Sides == 3)
             {
-                uint rand = GetRandom(Sides * 2);
-                decimal halfRandWithFraction = (decimal)rand / 2;
-                int halfRandWholeNumber = (int)rand / 2;
-                decimal fraction = halfRandWithFraction - halfRandWholeNumber;
+                uint result = GetRandom(Sides * 2);
+                decimal resultHalf = (decimal)result / 2;
+                int resultHalfWholeNumber = (int)result / 2;
+                decimal resultFraction = resultHalf - resultHalfWholeNumber;
 
-                if (fraction >= 0.5m)
+                if (resultFraction >= 0.5m)
                 {
-                    rand++;
+                    result++;
                 }
 
-                roll = (uint)rand;
+                roll = (uint)result;
             }
             else
             {

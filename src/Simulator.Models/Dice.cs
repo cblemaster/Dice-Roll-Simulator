@@ -29,7 +29,7 @@ public sealed class Dice
         }
     }
 
-    public RollResult Roll()
+    public Roll Roll()
     {
         List<uint> rolls = [];
 
@@ -75,7 +75,7 @@ public sealed class Dice
             }
             rolls.Add(roll);
         }
-        
+
         return new(Count, Sides, Modifier, rolls);
 
         static uint GetRandom(uint max)

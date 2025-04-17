@@ -11,15 +11,15 @@ public sealed class Dice
     {
         if (!sides.IsValidSides())
         {
-            // TODO...
+            throw new DomainRuleException($"{sides} is not a valid value for {nameof(sides)} .....");
         }
         else if (!count.IsValidCount())
         {
-            // TODO...
+            throw new DomainRuleException($"{count} is not a valid value for {nameof(count)}...");
         }
         else if (!modifier.IsValidModifier())
         {
-            // TODO...
+            throw new DomainRuleException($"{modifier} is not a valid value for {nameof(modifier)}...");
         }
         else
         {

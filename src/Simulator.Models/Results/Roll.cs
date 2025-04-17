@@ -1,14 +1,16 @@
-﻿namespace Simulator.Models.Results;
+﻿
+namespace Simulator.Models.Results;
 
 public sealed class Roll(uint count, uint sides, int modifier, IEnumerable<uint> rolls)
 {
     private uint Count { get; } = count;
     private uint Sides { get; } = sides;
+    public int Modifier { get; } = modifier;
     private IEnumerable<uint> Rolls { get; } = rolls;
 
-    public int Modifier { get; } = modifier;
     public uint RollsSum => (uint)Rolls.Sum(r => (int)r);
     public int FinalResult => (int)RollsSum + Modifier;
+
     public string ToDefinition()
     {
         string s = $"{Count}d{Sides}";

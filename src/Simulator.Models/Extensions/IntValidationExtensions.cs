@@ -1,4 +1,5 @@
-﻿// if the validation and rules were any more complicated,
+﻿
+// if the validation and rules were any more complicated,
 //   I would not be ok with the rule definitions living in
 //   an static extensions class
 

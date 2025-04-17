@@ -1,4 +1,5 @@
-﻿using Simulator.Models.Exceptions;
+﻿
+using Simulator.Models.Exceptions;
 using Simulator.Models.Extensions;
 using Simulator.Models.Results;
 
@@ -10,7 +11,7 @@ public sealed class Dice
     private uint Sides { get; }
     private int Modifier { get; }
 
-    public Dice(uint sides, uint count, int modifier)
+    public Dice(uint count, uint sides, int modifier)
     {
         if (!sides.IsValidSides())
         {

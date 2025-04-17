@@ -3,8 +3,8 @@ namespace Simulator.Models;
 
 public sealed class Dice
 {
-    private uint Sides { get; }
     private uint Count { get; }
+    private uint Sides { get; }
     private int Modifier { get; }
 
     public Dice(uint sides, uint count, int modifier)
@@ -23,22 +23,19 @@ public sealed class Dice
         }
         else
         {
-            Sides = sides;
             Count = count;
+            Sides = sides;
             Modifier = modifier;
         }
     }
 
-    public TallyResult TallyDice()
+    public RollResult Roll()
     {
-        uint diceTotal = 0;
-        string dieResults = string.Empty;
-        int rollTotal = 0;
+        List<uint> rolls = [];
 
         for (int i = 0; i < Count - 1; i++)
         {
             uint roll;
-
             if (Sides == 2)
             {
                 roll = (uint)(GetRandom(Sides * 2) % 2 == 0 ? 1 : 2);
@@ -57,19 +54,29 @@ public sealed class Dice
 
                 roll = (uint)result;
             }
+            else if (Sides == 100)
+            {
+                Random rand = new();
+                uint hundreds = (uint)rand.Next(0, 10);
+                uint tens = (uint)rand.Next(0, 10);
+
+                if (hundreds == tens && tens == 0)
+                {
+                    roll = 100;
+                }
+                else
+                {
+                    roll = (uint)(hundreds * 10 + tens);
+                }
+            }
             else
             {
                 roll = (uint)GetRandom(Sides);
             }
-
-            diceTotal += roll;
-            dieResults += $"{roll} ";
-            rollTotal += (int)roll;
+            rolls.Add(roll);
         }
-
-        rollTotal += Modifier;
-
-        return new(dieResults, diceTotal, Modifier, rollTotal);
+        
+        return new(Count, Sides, Modifier, rolls);
 
         static uint GetRandom(uint max)
         {

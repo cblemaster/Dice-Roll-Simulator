@@ -7,6 +7,11 @@ namespace Simulator.Models.Models;
 
 public sealed class Dice
 {
+    private const uint ABILITY_SCORE_COUNT = 6;
+    private const uint ABILITY_SCORE_DICE_COUNT = 4;
+    private const uint ABILITY_SCORE_DICE_SIDES = 6;
+    private const int ABILITY_SCORE_DICE_MODIFIER = 0;
+
     private uint Count { get; }
     private uint Sides { get; }
     private int Modifier { get; }
@@ -80,5 +85,18 @@ public sealed class Dice
             Random rand = new();
             return (uint)rand.Next(1, (int)(max + 1));
         }
+    }
+
+    public static IEnumerable<Roll> RollAbilityScores()
+    {
+        List<Roll> rolls = [];
+
+        for (int i = 0; i < ABILITY_SCORE_COUNT - 1; i++)
+        {
+            Dice dice = new(ABILITY_SCORE_DICE_SIDES, ABILITY_SCORE_DICE_COUNT, ABILITY_SCORE_DICE_MODIFIER);
+            rolls.Add(dice.Roll());
+        }
+
+        return rolls;
     }
 }

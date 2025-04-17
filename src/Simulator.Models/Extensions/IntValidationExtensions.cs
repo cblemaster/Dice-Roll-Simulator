@@ -1,9 +1,8 @@
-﻿
-// if the validation and rules were any more complicated,
+﻿// if the validation and rules were any more complicated,
 //   I would not be ok with the rule definitions living in
 //   an static extensions class
 
-namespace Simulator.Models;
+namespace Simulator.Models.Extensions;
 
 internal static class IntValidationExtensions
 {

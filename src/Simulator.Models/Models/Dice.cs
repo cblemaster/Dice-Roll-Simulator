@@ -1,5 +1,8 @@
-﻿
-namespace Simulator.Models;
+﻿using Simulator.Models.Exceptions;
+using Simulator.Models.Extensions;
+using Simulator.Models.Results;
+
+namespace Simulator.Models.Models;
 
 public sealed class Dice
 {
@@ -52,7 +55,7 @@ public sealed class Dice
                     result++;
                 }
 
-                roll = (uint)result;
+                roll = result;
             }
             else if (Sides == 100)
             {
@@ -60,11 +63,11 @@ public sealed class Dice
                 uint hundreds = (uint)rand.Next(0, 10);
                 uint tens = (uint)rand.Next(0, 10);
 
-                roll = hundreds == tens && tens == 0 ? 100 : (uint)((hundreds * 10) + tens);
+                roll = hundreds == tens && tens == 0 ? 100 : (hundreds * 10) + tens;
             }
             else
             {
-                roll = (uint)GetRandom(Sides);
+                roll = GetRandom(Sides);
             }
             rolls.Add(roll);
         }

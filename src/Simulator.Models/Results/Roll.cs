@@ -1,5 +1,4 @@
-﻿
-namespace Simulator.Models;
+﻿namespace Simulator.Models.Results;
 
 public sealed class Roll(uint count, uint sides, int modifier, IEnumerable<uint> rolls)
 {

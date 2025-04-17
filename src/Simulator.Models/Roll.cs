@@ -1,7 +1,7 @@
 ﻿
 namespace Simulator.Models;
 
-public sealed class Roll(uint count, uint sides, int modifier, IEnumerable<uint> rolls) : Result
+public sealed class Roll(uint count, uint sides, int modifier, IEnumerable<uint> rolls)
 {
     private uint Count { get; } = count;
     private uint Sides { get; } = sides;

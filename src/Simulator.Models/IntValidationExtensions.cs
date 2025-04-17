@@ -20,5 +20,5 @@ internal static class IntValidationExtensions
 
     internal static bool IsValidCount(this uint count) => count is >= MIN_COUNT and <= MAX_COUNT;
 
-    internal static bool IsValidModifier(this int modifier) => modifier is >= MIN_MODIFIER and <= MAX_MODIFIER && modifier != 0;
+    internal static bool IsValidModifier(this int modifier) => modifier is >= MIN_MODIFIER and <= MAX_MODIFIER and not 0;
 }

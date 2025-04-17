@@ -60,14 +60,7 @@ public sealed class Dice
                 uint hundreds = (uint)rand.Next(0, 10);
                 uint tens = (uint)rand.Next(0, 10);
 
-                if (hundreds == tens && tens == 0)
-                {
-                    roll = 100;
-                }
-                else
-                {
-                    roll = (uint)(hundreds * 10 + tens);
-                }
+                roll = hundreds == tens && tens == 0 ? 100 : (uint)((hundreds * 10) + tens);
             }
             else
             {

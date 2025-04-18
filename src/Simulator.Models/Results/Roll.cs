@@ -1,14 +1,14 @@
 ﻿
 namespace Simulator.Models.Results;
 
-public sealed class Roll(uint count, uint sides, int modifier, IEnumerable<uint> rolls)
+public class Roll(uint count, uint sides, int modifier, IEnumerable<uint> rolls)
 {
     private uint Count { get; } = count;
     private uint Sides { get; } = sides;
     public int Modifier { get; } = modifier;
-    private IEnumerable<uint> Rolls { get; } = rolls;
+    protected virtual IEnumerable<uint> Rolls { get; } = rolls;
 
-    public uint RollsSum => (uint)Rolls.Sum(r => (int)r);
+    public virtual uint RollsSum => (uint)Rolls.Sum(r => (int)r);
     public int FinalResult => (int)RollsSum + Modifier;
 
     public string ToDefinition()
@@ -24,5 +24,5 @@ public sealed class Roll(uint count, uint sides, int modifier, IEnumerable<uint>
         }
         return s;
     }
-    public string ToRollsJoined(string separator) => string.Join(separator, Rolls);
+    public string ToRollsJoined(string separator) => string.Join(separator, Rolls.OrderByDescending(r => r));
 }

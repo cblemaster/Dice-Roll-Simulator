@@ -6,10 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Die.cs" />
-    <Compile Remove="RollInput.cs" />
-    <Compile Remove="RollOutput.cs" />
-  </ItemGroup>
-
 </Project>

@@ -5,7 +5,7 @@ internal sealed class Dice
 {
     private readonly Random _random = new();
 
-    internal uint Sides { get; }
+    internal uint Sides { get; }    // TODO: encapsulate sides, count, and mod; they are on every class
     internal uint Count { get; }
     internal int Modifier { get; }
 

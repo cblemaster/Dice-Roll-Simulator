@@ -1,24 +1,25 @@
 ﻿
 namespace Models;
 
-internal sealed record DiceResult
+internal sealed class DiceResult
 {
     internal uint Sides { get; }
     internal uint Count { get; }
     internal int Modifier { get; }
-    internal IEnumerable<uint> Rolls { get; }
+    internal IReadOnlyCollection<uint> Rolls { get; }
 
     private DiceResult(uint sides, uint count, int modifier, IEnumerable<uint> rolls)
     {
         Sides = sides;
         Count = count;
         Modifier = modifier;
-        Rolls = rolls;
+        Rolls = rolls.ToList().AsReadOnly();
     }
 
     internal static DiceResult Create(uint sides, uint count, int modifier, IEnumerable<uint> rolls) =>
         new(sides, count, modifier, rolls);
 
+    // TODO: Move this into extension methods
     internal string DiceToString() => string.Join(", ", Rolls);
     internal string ModifierToString()
     {

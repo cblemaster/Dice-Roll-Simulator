@@ -5,7 +5,7 @@ An app that simulates rolling the polyhedral dice that are used in many popular 
 .NET 9.0, C# 13
 ### Features
 #### Roll dice
-+ Roll up to ten (10) of any of these dice: d2, d3, d4, d6, d8, d10, d12, d20, d100
++ Roll between one(1) and ten(10) of any of these dice: d2, d3, d4, d6, d8, d10, d12, d20, d100
 + Optionally add or subtract a modifier between -100 and 100 (inclusive)
 + See the result of the roll that includes:
 ++ The definition of the roll (e.g., 2d6 +3)
